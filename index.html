@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimple AI | Your Executive Assistant</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Style -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dimple-ai.vercel.app/">
+    <meta property="og:title" content="Dimple AI | Your Executive Assistant">
+    <meta property="og:description"
+        content="Meet Dimple AI, your advanced executive assistant for chat, image generation, and more.">
+    <meta property="og:image" content="logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dimple-ai.vercel.app/">
+    <meta property="twitter:title" content="Dimple AI | Your Executive Assistant">
+    <meta property="twitter:description"
+        content="Meet Dimple AI, your advanced executive assistant for chat, image generation, and more.">
+    <meta property="twitter:image" content="logo.png">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="logo.png" alt="Dimple AI Logo" class="sidebar-logo">
+                <button id="close-sidebar-btn" class="icon-btn-ghost">
+                    <i class="fa-solid fa-angles-left"></i>
+                </button>
+            </div>
+
+            <button class="new-chat-btn" id="new-chat-btn">
+                <i class="fa-solid fa-plus"></i> New chat
+            </button>
+
+            <nav class="sidebar-nav">
+                <div class="nav-item">
+                    <i class="fa-regular fa-message"></i>
+                    <span>Chat History</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fa-solid fa-image"></i>
+                    <span>Generated Images</span>
+                </div>
+                <div class="nav-divider"></div>
+                <div class="sidebar-label">Share App</div>
+                <div class="share-grid">
+                    <button class="share-btn whatsapp" onclick="shareTo('whatsapp')" title="Share on WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </button>
+                    <button class="share-btn telegram" onclick="shareTo('telegram')" title="Share on Telegram">
+                        <i class="fa-brands fa-telegram"></i>
+                    </button>
+                    <button class="share-btn twitter" onclick="shareTo('twitter')" title="Share on X">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </button>
+                    <button class="share-btn linkedin" onclick="shareTo('linkedin')" title="Share on LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </button>
+                    <button class="share-btn copy" onclick="shareTo('copy')" title="Copy Link">
+                        <i class="fa-solid fa-link"></i>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="ceo-badge" id="user-profile-card">
+                    <div class="badge-avatar" id="badge-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="badge-info">
+                        <div class="role" id="user-role">CEO & FOUNDER</div>
+                        <div class="name" id="display-name">Dimple</div>
+                    </div>
+                </div>
+                <div class="nav-item" id="settings-btn">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Profile Settings</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <button class="menu-btn" id="menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="brand">Dimple<span>AI</span></div>
+
+                <div class="model-toggle">
+                    <div class="model-btn" data-model="gemini">Gemini Pro</div>
+                    <div class="model-btn active" data-model="groq">Groq Fast</div>
+                </div>
+
+                <div class="top-actions">
+                    <div id="user-avatar-top"
+                        style="width: 32px; height: 32px; border-radius: 50%; overflow: hidden; background: #444; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                        <i class="fa-solid fa-circle-user" style="font-size: 1.5rem; color: var(--text-secondary);"></i>
+                    </div>
+                </div>
+            </header>
+
+            <div class="chat-container" id="chat-container">
+                <!-- Welcome Screen -->
+                <div class="welcome-section" id="welcome-container">
+                    <div class="welcome-logo">
+                        <img src="logo.png" alt="Dimple AI"
+                            style="height: 120px; width: auto; margin-bottom: 2rem; filter: drop-shadow(0 0 15px rgba(171, 104, 255, 0.3));">
+                    </div>
+
+                    <!-- New Feature Slider -->
+                    <div class="slider-wrapper">
+                        <div class="slider-track">
+                            <div class="slide-item">
+                                <i class="fa-solid fa-brain"></i>
+                                <span>Smart AI</span>
+                            </div>
+                            <div class="slide-item">
+                                <i class="fa-solid fa-image"></i>
+                                <span>Image Gen</span>
+                            </div>
+                            <div class="slide-item">
+                                <i class="fa-solid fa-microphone"></i>
+                                <span>Voice Chat</span>
+                            </div>
+                            <div class="slide-item">
+                                <i class="fa-solid fa-code"></i>
+                                <span>Code Helper</span>
+                            </div>
+                            <div class="slide-item">
+                                <i class="fa-solid fa-bolt"></i>
+                                <span>Fast Gen</span>
+                            </div>
+                            <!-- Duplicates for infinite loop -->
+                            <div class="slide-item">
+                                <i class="fa-solid fa-brain"></i>
+                                <span>Smart AI</span>
+                            </div>
+                            <div class="slide-item">
+                                <i class="fa-solid fa-image"></i>
+                                <span>Image Gen</span>
+                            </div>
+                            <div class="slide-item">
+                                <i class="fa-solid fa-microphone"></i>
+                                <span>Voice Chat</span>
+                            </div>
+                            <div class="slide-item">
+                                <i class="fa-solid fa-code"></i>
+                                <span>Code Helper</span>
+                            </div>
+                            <div class="slide-item">
+                                <i class="fa-solid fa-bolt"></i>
+                                <span>Fast Gen</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1 class="welcome-title">Where should we begin?</h1>
+                    <div class="suggestions-grid">
+                        <div class="suggestion-card card-1"
+                            onclick="setInput('Write a Python script for a simple calculator')">
+                            <i class="fa-solid fa-code"></i>
+                            <div class="card-text">Write a code</div>
+                        </div>
+                        <div class="suggestion-card card-2"
+                            onclick="setInput('Plan a 3-day trip to Paris for a couple')">
+                            <i class="fa-solid fa-plane"></i>
+                            <div class="card-text">Plan a trip</div>
+                        </div>
+                        <div class="suggestion-card card-3"
+                            onclick="setInput('Give me some quick healthy tips for a busy CEO')">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                            <div class="card-text">Healthy tips</div>
+                        </div>
+                        <div class="suggestion-card card-4"
+                            onclick="setInput('Help me write a professional email to a client')">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <div class="card-text">Help me write</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Chat -->
+                <div class="chat-history" id="chat-history">
+                    <!-- Messages will be injected here -->
+                </div>
+            </div>
+
+            <!-- Input Capsule -->
+            <footer class="input-wrapper">
+                <div class="input-capsule">
+                    <button class="action-btn" title="Attach file">
+                        <i class="fa-solid fa-plus" style="font-size: 1.2rem;"></i>
+                    </button>
+
+                    <textarea id="user-input" placeholder="Ask anything..." rows="1"></textarea>
+
+                    <div class="bar-actions">
+                        <button class="action-btn" id="voice-btn" title="Voice Input">
+                            <i class="fa-solid fa-microphone"></i>
+                        </button>
+                        <button class="action-btn" id="send-btn" disabled title="Send message">
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </button>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Profile Settings Modal -->
+    <div id="profile-modal" class="overlay hidden">
+        <div class="overlay-content profile-settings">
+            <h2 style="color: var(--accent-primary); margin-bottom: 20px;">Profile Settings</h2>
+
+            <div class="profile-upload">
+                <div id="profile-preview" class="avatar-large">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <input type="file" id="avatar-input" accept="image/*" class="hidden">
+                <button onclick="document.getElementById('avatar-input').click()" class="sub-btn">
+                    <i class="fa-solid fa-camera"></i> Change Photo
+                </button>
+            </div>
+
+            <div class="input-group">
+                <label>Your Name</label>
+                <input type="text" id="name-input" placeholder="Enter your name">
+            </div>
+
+            <div class="input-group">
+                <label>Role</label>
+                <input type="text" id="role-input" placeholder="e.g. CEO & FOUNDER">
+            </div>
+
+            <div class="modal-actions">
+                <button id="cancel-profile" class="btn-secondary">Cancel</button>
+                <button id="save-profile" class="btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Birthday Celebration Overlay -->
+    <div id="birthday-overlay" class="overlay hidden">
+        <div class="overlay-content">
+            <h1>🎉 Happy Birthday Dimple! 🎂</h1>
+            <p>Wishing our amazing CEO & Founder a magical day! ❤️</p>
+            <button onclick="closeBirthday()">Thank You, Himu! ✨</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
