@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/chat", "destination": "/api/index.py" },
+    { "source": "/generate_image", "destination": "/api/index.py" },
+    { "source": "/generate_video", "destination": "/api/index.py" }
+  ]
+}

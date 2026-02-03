@@ -1,0 +1,3 @@
+GROQ_API_KEY: Present
+GROQ_MODEL: llama-3.3-70b-versatile
+GEMINI_API_KEY: Missing
